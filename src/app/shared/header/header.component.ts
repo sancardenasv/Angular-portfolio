@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageDataService } from 'src/app/services/page-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,18 @@ import { PageDataService } from 'src/app/services/page-data.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public pageDataService: PageDataService) { }
+  constructor(public pageDataService: PageDataService,
+              private router: Router) { }
 
   ngOnInit() {
+  }
+
+  shearchProduct(term: string) {
+    if (term.length <= 0) {
+      return;
+    }
+    // console.log("SEARCHING", term);
+    this.router.navigate(['/search', term]);
   }
 
 }
